@@ -1,23 +1,20 @@
-# Local .terraform directories
-.terraform/
+# .gitignore
 
-# .tfstate files
+# Terraform files
 *.tfstate
 *.tfstate.*
+.terraform/
+.terraform.lock.hcl
+terraform.tfplan
+terraform.tfplan.*
+*.tfplan
 
 # Crash log files
 crash.log
 crash.*.log
 
-# Exclude all .tfvars files, which are likely to contain sensitive data, such as
-# password, private keys, and other secrets. These should not be part of version 
-# control as they are data points which are potentially sensitive and subject 
-# to change depending on the environment.
-*.tfvars
-*.tfvars.json
 
-# Ignore override files as they are usually used to override resources locally and so
-# are not checked in
+# Ignore override files as they are usually used to override resources locally
 override.tf
 override.tf.json
 *_override.tf
@@ -30,8 +27,119 @@ override.tf.json
 # !example_override.tf
 
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
-# example: *tfplan*
+ *tfplan*
+ *.tfplan
+ *.tfvars
+ **.tfvars
+ *tfvars*
+
 
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# nyc test coverage
+.nyc_output
+
+# Grunt intermediate storage
+.grunt
+
+# Bower dependency directory
+bower_components
+
+# node_modules
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Test artifacts
+test-results/
+test-reports/
+.pytest_cache/
+
+# Backup files
+*.bak
+*.backup
+
+# GCP service account keys
+*.json
+!examples/*.json
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+claude.md
+svc-gke/tfplan
+svc-sql/cert/client-cert.pem
+svc-sql/cert/client-key.pem
+svc-sql/cert/server-ca .pem
+net-bastion/cloud-sql-proxy
+net-bastion/cloud-sql-proxy-v2

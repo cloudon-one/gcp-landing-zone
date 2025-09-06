@@ -1,0 +1,41 @@
+#!/bin/bash
+
+PROJECT_ID="host-project"
+ZONE="us-central1-a"
+VM_NAME="database-proxy"
+PROXY_IP=$(gcloud compute instances describe $VM_NAME \
+    --zone=$ZONE \
+    --project=$PROJECT_ID \
+    --format="get(networkInterfaces[0].networkIP)")
+
+echo "Proxy VM Internal IP: $PROXY_IP"
+echo "Testing connectivity from GKE pod..."
+echo "kubectl run test-pod --image=nicolaka/netshoot --rm -it -- /bin/bash"
+echo ""
+echo "# Inside the test pod, run these commands:"
+echo "# Test Redis connectivity"
+echo "nc -zv $PROXY_IP 6379"
+echo ""
+echo "# Test SQL primary connectivity"  
+echo "nc -zv $PROXY_IP 3306"
+echo ""
+echo "# Test SQL replica connectivity"
+echo "nc -zv $PROXY_IP 3307"
+echo ""
+echo "# Test Redis with redis-cli (if available)"
+echo "redis-cli -h $PROXY_IP -p 6379 ping"
+echo ""
+echo "# Test PostgreSQL connection (if psql client available)"
+echo "psql -h $PROXY_IP -p 5432 -U your_user -d your_database"
+echo "psql -h $PROXY_IP -p 5433 -U your_user -d your_database"
+echo ""
+echo "To test from proxy VM, SSH and run:"
+echo "gcloud compute ssh $VM_NAME --zone=$ZONE --project=$PROJECT_ID"
+echo ""
+echo "# Then test local connections:"
+echo "nc -zv 10.161.12.4 6378  # Direct Redis"
+echo "nc -zv 10.161.1.2 5432   # Direct PostgreSQL primary" 
+echo "nc -zv 10.161.2.2 5432   # Direct PostgreSQL replica"
+echo "nc -zv localhost 6379   # Proxy Redis"
+echo "nc -zv localhost 5432   # Proxy PostgreSQL primary"
+echo "nc -zv localhost 5433   # Proxy PostgreSQL replica"
