@@ -35,7 +35,7 @@ We take security vulnerabilities seriously and appreciate responsible disclosure
 ### How to Report
 
 1. **DO NOT** create a public GitHub issue for security vulnerabilities
-2. **DO** email security details to: `security@company.com`
+2. **DO** email security details to: `security@cloudon-one.com`
 3. **DO** include as much detail as possible:
    - Description of the vulnerability
    - Steps to reproduce
@@ -53,9 +53,7 @@ We take security vulnerabilities seriously and appreciate responsible disclosure
 
 ### Security Response Team
 
-- **Security Lead**: security-lead@company.com
-- **DevSecOps Engineer**: devsecops@company.com
-- **Compliance Officer**: compliance@company.com
+- **Security Lead**: security-lead@clouon-one.com
 
 ## 🔒 Security Architecture
 
@@ -130,8 +128,8 @@ resource "google_project_iam_member" "gke_cluster_roles" {
 
 #### Database Security
 ```hcl
-resource "google_sql_database_instance" "fintech_db" {
-  name             = "fintech-db"
+resource "google_sql_database_instance" "analytics_db" {
+  name             = "analytics-db"
   database_version = "POSTGRES_15"
   region          = var.region
   
@@ -327,21 +325,12 @@ Critical Incident Communication Flow:
 5. Customers (as required by regulation)
 ```
 
-### Response Team Contacts
-
-| Role | Contact | Responsibilities |
-|------|---------|------------------|
-| Incident Commander | +1-555-0001 | Overall response coordination |
-| Technical Lead | +1-555-0002 | Technical analysis and remediation |
-| Communications Lead | +1-555-0003 | Internal/external communications |
-| Legal Counsel | +1-555-0004 | Legal and regulatory guidance |
-| CISO | +1-555-0005 | Strategic decisions and escalation |
-
 ## 🔍 Security Testing
 
 ### Automated Security Testing
 
 #### Static Analysis
+
 ```bash
 # Terraform security scanning
 tfsec . --format json --out tfsec-results.json
@@ -354,6 +343,7 @@ kubesec scan deployment.yaml
 ```
 
 #### Dynamic Analysis
+
 ```bash
 # Container vulnerability scanning
 trivy image gcr.io/PROJECT/app:latest
@@ -598,15 +588,7 @@ flowchart TD
 ## 📞 Contact Information
 
 ### Security Team
-- **Email**: security@company.com
-- **Phone**: +1-555-SECURITY (555-732-8748)
-- **Slack**: #security-team
-- **PagerDuty**: P0/P1 incidents only
-
-### Emergency Contacts
-- **After Hours**: +1-555-0911
-- **Escalation**: ciso@company.com
-- **Legal**: legal@company.com
+- **Email**: security@cloudon-one.com
 
 ### External Resources
 - **Google Security Team**: https://cloud.google.com/support
