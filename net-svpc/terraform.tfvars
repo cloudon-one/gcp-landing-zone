@@ -192,29 +192,6 @@ gke_firewall_rules = {
     deny = []
   }
 
-  gke-allow-atlassian-cicd = {
-    name                    = "gke-allow-atlassian-cicd"
-    description             = "Allow Atlassian IP ranges for CI/CD access to GKE cluster"
-    direction               = "INGRESS"
-    priority                = 1000
-    disabled                = false
-    enable_logging          = false
-    source_ranges           = []
-    destination_ranges      = null
-    source_tags             = null
-    source_service_accounts = null
-    target_tags             = ["gke-node", "gke-cluster-node"]
-    target_service_accounts = null
-    allow = [
-      {
-        protocol = "tcp"
-        ports    = ["443", "6443", "8080", "8443"]
-      }
-    ]
-    deny = []
-  }
-}
-
 data_firewall_rules = {
   data-allow-internal = {
     name                    = "data-allow-internal"
