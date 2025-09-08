@@ -1,6 +1,6 @@
 # GCP Landing Zone Template
 
-A comprehensive, enterprise-grade Google Cloud Platform (GCP) landing zone designed for fintech organizations, providing secure, scalable, and compliant cloud infrastructure with strong network isolation, identity management, and regulatory compliance features.
+A comprehensive, enterprise-grade Google Cloud Platform (GCP) landing zone designed for financial and healthcare organizations, providing secure, scalable, and compliant cloud infrastructure with strong network isolation, identity management, and regulatory compliance features.
 
 ## 🏗️ Architecture Overview
 
@@ -173,8 +173,8 @@ zone       = "us-central1-a"
 # Network configuration
 vpc_cidr = "10.0.0.0/8"
 authorized_networks = [
-  "10.100.0.0/16",  # gke-vpc
-  "10.101.0.0/16"   # data-vpc
+  "10.100.0.0/16",  # vpc1
+  "10.101.0.0/16"   # vpc2
 ]
 
 # Security settings
@@ -216,7 +216,7 @@ Identity and Access Management:
 - Service accounts with minimal permissions
 - IAM policies for different environments
 - Workload Identity for GKE
-- Custom roles for fintech compliance
+- Custom roles for financial compliance
 
 #### [vpcsc/](./vpcsc/README.md)
 
