@@ -28,14 +28,14 @@ This landing zone implements a multi-layered security architecture with:
 
 ```
 gcp-landing-zone/
-├── net-bastion/          # Secure bastion host for administration
-├── net-iam/             # Identity and Access Management policies
-├── net-svpc/            # Shared VPC network infrastructure
-├── net-vpcsc/           # VPC Service Controls perimeter
-├── svc-gke/             # Google Kubernetes Engine clusters
-├── svc-projects/        # GCP project structure and organization
-├── svc-redis/           # Redis instances for caching
-├── svc-sql/             # Cloud SQL databases
+├── bastion/          # Secure bastion host for administration
+├── iam/             # Identity and Access Management policies
+├── shared-vpc/            # Shared VPC network infrastructure
+├── vpcsc/           # VPC Service Controls perimeter
+├── gke/             # Google Kubernetes Engine clusters
+├── projects/        # GCP project structure and organization
+├── redis/           # Redis instances for caching
+├── sql/             # Cloud SQL databases
 ├── locals.tf            # Local variable definitions
 ├── README.md            # This file
 ├── CONTRIBUTING.md      # Contribution guidelines
@@ -98,48 +98,48 @@ Deploy in the following order:
 
 ```bash
 # 1. Deploy service projects
-cd svc-projects
+cd projects
 terraform init
 terraform plan
 terraform apply
 
 # 2. Deploy shared VPC
-cd ../net-svpc
+cd ../svpc
 terraform init
 terraform plan
 terraform apply
 
 # 3. Deploy IAM policies
-cd ../net-iam
+cd ../iam
 terraform init
 terraform plan
 terraform apply
 
 # 4. Deploy VPC Service Controls
-cd ../net-vpcsc
+cd ../vpcsc
 terraform init
 terraform plan
 terraform apply
 
 # 5. Deploy bastion host
-cd ../net-bastion
+cd ../bastion
 terraform init
 terraform plan
 terraform apply
 
 # 6. Deploy GKE cluster
-cd ../svc-gke
+cd ../gke
 terraform init
 terraform plan
 terraform apply
 
 # 7. Deploy data services
-cd ../svc-sql
+cd ../sql
 terraform init
 terraform plan
 terraform apply
 
-cd ../svc-redis
+cd ../redis
 terraform init
 terraform plan
 terraform apply
@@ -173,8 +173,8 @@ zone       = "us-central1-a"
 # Network configuration
 vpc_cidr = "10.0.0.0/8"
 authorized_networks = [
-  "10.160.0.0/16",  # GKE VPC
-  "10.161.0.0/16"   # Data VPC
+  "10.160.0.0/16",  # gke-vpc
+  "10.161.0.0/16"   # data-vpc
 ]
 
 # Security settings
@@ -191,7 +191,7 @@ log_retention_days = 365
 
 ### Network Modules
 
-#### [net-svpc/](./net-svpc/README.md)
+#### [shared-vpc/](./shared-vpc/README.md)
 
 Shared VPC implementation with:
 
@@ -200,7 +200,7 @@ Shared VPC implementation with:
 - Private Google Access enabled
 - VPC flow logs for security monitoring
 
-#### [net-bastion/](./net-bastion/README.md)
+#### [bastion/](./bastion/README.md)
 
 Secure bastion host providing:
 
@@ -209,7 +209,7 @@ Secure bastion host providing:
 - Audit logging
 - Connection to private subnets
 
-#### [net-iam/](./net-iam/README.md)
+#### [iam/](./iam/README.md)
 
 Identity and Access Management:
 
@@ -218,7 +218,7 @@ Identity and Access Management:
 - Workload Identity for GKE
 - Custom roles for fintech compliance
 
-#### [net-vpcsc/](./net-vpcsc/README.md)
+#### [vpcsc/](./vpcsc/README.md)
 
 VPC Service Controls:
 
@@ -229,7 +229,7 @@ VPC Service Controls:
 
 ### Service Modules
 
-#### [svc-projects/](./svc-projects/README.md)
+#### [projects/](./projects/README.md)
 
 GCP project organization:
 
@@ -238,7 +238,7 @@ GCP project organization:
 - Billing account association
 - Folder structure for governance
 
-#### [svc-gke/](./svc-gke/README.md)
+#### [gke/](./gke/README.md)
 
 Google Kubernetes Engine:
 
@@ -248,7 +248,7 @@ Google Kubernetes Engine:
 - RBAC configuration
 - Pod security standards
 
-#### [svc-sql/](./svc-sql/README.md)
+#### [sql/](./sql/README.md)
 
 Cloud SQL databases:
 
@@ -258,7 +258,7 @@ Cloud SQL databases:
 - Private IP connectivity
 - Encryption at rest
 
-#### [svc-redis/](./svc-redis/README.md)
+#### [redis/](./redis/README.md)
 
 Redis instances:
 
