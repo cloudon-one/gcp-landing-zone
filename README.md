@@ -29,17 +29,17 @@ This landing zone implements a multi-layered security architecture with:
 ```
 gcp-landing-zone/
 ├── bastion/          # Secure bastion host for administration
-├── iam/             # Identity and Access Management policies
-├── shared-vpc/            # Shared VPC network infrastructure
-├── vpcsc/           # VPC Service Controls perimeter
-├── gke/             # Google Kubernetes Engine clusters
-├── projects/        # GCP project structure and organization
-├── redis/           # Redis instances for caching
-├── sql/             # Cloud SQL databases
-├── locals.tf            # Local variable definitions
-├── README.md            # This file
-├── CONTRIBUTING.md      # Contribution guidelines
-└── SECURITY.md          # Security policies and procedures
+├── iam/              # Identity and Access Management policies
+├── shared-vpc/       # Shared VPC network infrastructure
+├── vpcsc/            # VPC Service Controls perimeter
+├── gke/              # Google Kubernetes Engine clusters
+├── projects/         # GCP project structure and organization
+├── redis/            # Redis instances for caching
+├── sql/              # Cloud SQL databases
+├── locals.tf         # Local variable definitions
+├── README.md         # This file
+├── CONTRIBUTING.md   # Contribution guidelines
+└── SECURITY.md       # Security policies and procedures
 ```
 
 ## 🚀 Quick Start
@@ -173,8 +173,8 @@ zone       = "us-central1-a"
 # Network configuration
 vpc_cidr = "10.0.0.0/8"
 authorized_networks = [
-  "10.160.0.0/16",  # gke-vpc
-  "10.161.0.0/16"   # data-vpc
+  "10.100.0.0/16",  # gke-vpc
+  "10.101.0.0/16"   # data-vpc
 ]
 
 # Security settings
