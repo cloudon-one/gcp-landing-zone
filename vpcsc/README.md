@@ -75,7 +75,7 @@ The perimeter restricts access to the following Google Cloud services:
 
 ```hcl
 module "vpc_service_controls" {
-  source = "./net-vpcsc"
+  source = "./vpcsc"
 
   # Organization Configuration
   organization_id = "123456789012"
@@ -91,7 +91,7 @@ module "vpc_service_controls" {
 
 ```hcl
 module "vpc_service_controls" {
-  source = "./net-vpcsc"
+  source = "./vpcsc"
 
   # Organization Configuration
   organization_id = "123456789012"
