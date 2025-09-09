@@ -16,7 +16,7 @@ The Redis service provides high-performance, managed Redis instances with:
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   GKE Cluster   │    │   Data VPC      │    │   IAP Tunnel    │
+│   GKE VPC       │    │   Data VPC      │    │   IAP Tunnel    │
 │  10.160.0.0/16  │    │  10.161.0.0/16  │    │ 35.235.240.0/20 │
 └─────────┬───────┘    └─────────┬───────┘    └─────────┬───────┘
           │                      │                      │
@@ -24,7 +24,7 @@ The Redis service provides high-performance, managed Redis instances with:
                                  │
                     ┌────────────▼───────────── ┐
                     │    Redis Instances        │
-                    │     10.161.12.0/28         │
+                    │     10.161.12.0/28        │
                     │                           │
                     └───────────────────────────┘
 ```
@@ -119,9 +119,9 @@ variable "redis_instances_config" {
 
 This service depends on the following Terraform states:
 
-- **net-svcp**: For VPC network configuration
-- **svc-projects**: For project IDs
-- **net-iam**: For IAM configuration
+- **shared-vpc**: For VPC network configuration
+- **projects**: For project IDs
+- **iam**: For IAM configuration
 
 ## Outputs
 
