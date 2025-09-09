@@ -3,7 +3,7 @@
 
 locals {
   # Organization and project identifiers
-  organization_name = "fintech"
+  organization_name = "my-org"
   project_suffix    = "prod"
   environment       = "production"
   deployment_id     = formatdate("YYYY-MM-DD", timestamp())
@@ -33,7 +33,7 @@ locals {
     # Infrastructure metadata
     organization    = local.organization_name
     environment     = local.environment
-    project_type    = "fintech-infrastructure"
+    project_type    = "infrastructure"
     deployment_date = local.deployment_id
     managed_by      = "terraform"
 
@@ -94,12 +94,12 @@ locals {
   network_cidrs = {
     # GKE VPC network ranges
     gke_vpc = {
-      primary           = "10.60.0.0/16"   # Main GKE network
-      gke_nodes         = "10.60.0.0/20"   # Node subnets
-      gke_pods          = "10.60.128.0/17" # Pod IP ranges  
-      gke_services      = "10.60.224.0/20" # Service IP ranges
-      gke_proxy         = "10.60.16.0/24"  # Proxy-only subnet
-      gke_control_plane = "172.16.0.0/28"  # Private control plane
+      primary           = "10.160.0.0/16"   # Main GKE network
+      gke_nodes         = "10.160.0.0/20"   # Node subnets
+      gke_pods          = "10.160.128.0/17" # Pod IP ranges  
+      gke_services      = "10.160.224.0/20" # Service IP ranges
+      gke_proxy         = "10.160.16.0/24"  # Proxy-only subnet
+      gke_control_plane = "10.160.144.0/28" # Private control plane
     }
 
     # Data VPC network ranges
