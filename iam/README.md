@@ -1,10 +1,10 @@
-# Network IAM Management
+# IAM Management
 
 This Terraform configuration manages Identity and Access Management (IAM) resources for the fintech production infrastructure across multiple Google Cloud projects.
 
 ## Overview
 
-The `net-iam` module provides centralized IAM management for:
+The `iam` module provides centralized IAM management for:
 
 - **GKE (Google Kubernetes Engine)** service accounts and workload identity
 - **Cloud SQL** database access and administration
@@ -16,8 +16,8 @@ The `net-iam` module provides centralized IAM management for:
 
 This module integrates with the broader fintech infrastructure by consuming outputs from:
 
-- `net-svpc` - Shared VPC network configuration
-- `svc-projects` - Project IDs and service account information
+- `shared-vpc` - Shared VPC network configuration
+- `projects` - Project IDs and service account information
 
 ## Components
 
@@ -53,7 +53,7 @@ This module integrates with the broader fintech infrastructure by consuming outp
 
 ```hcl
 module "iam" {
-  source = "./net-iam"
+  source = "./iam"
 
   # Enable all IAM components
   enable_gke_iam = true
@@ -67,9 +67,9 @@ module "iam" {
   
   # Backend configuration for remote state
   net_svcp_backend_bucket = "tfstate-bucket"
-  net_svcp_backend_prefix = "net-svcp"
+  net_svcp_backend_prefix = "shared-vpc”
   svc_projects_backend_bucket = "tfstate-bucket"
-  svc_projects_backend_prefix = "svc-projects"
+  svc_projects_backend_prefix = "projects"
 }
 ```
 
@@ -77,7 +77,7 @@ module "iam" {
 
 ```hcl
 module "iam" {
-  source = "./net-iam"
+  source = "./iam"
 
   # GKE Workload Identity Configuration
   gke_workload_identity_service_accounts = {
@@ -118,7 +118,7 @@ module "iam" {
 
   # Bastion Service Account Configuration
   bastion_service_account_config = {
-    account_id   = "bastion-prod-host"
+    account_id   = "bastion-host"
     display_name = "Bastion Admin Service Account"
     description  = "Service account for bastion host with admin access"
     gcp_roles = [
