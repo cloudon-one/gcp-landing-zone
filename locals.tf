@@ -104,10 +104,10 @@ locals {
 
     # Data VPC network ranges
     data_vpc = {
-      primary          = "10.61.0.0/16"   # Main data network
-      data_services    = "10.61.0.0/20"   # Data service subnets
-      data_proxy       = "10.61.16.0/24"  # Proxy-only subnet
-      private_services = "10.61.240.0/20" # Private service access
+      primary          = "10.161.0.0/16"   # Main data network
+      data_services    = "10.161.0.0/20"   # Data service subnets
+      data_proxy       = "10.161.16.0/24"  # Proxy-only subnet
+      private_services = "10.161.240.0/20" # Private service access
     }
   }
 
