@@ -1,4 +1,4 @@
-# SOC2/PSD2 Complient Production GKE Cluster Config
+# Production GKE Cluster Config
 
 This service deploys a production-ready Google Kubernetes Engine (GKE) cluster with enterprise-grade security, monitoring, and operational features for the fintech platform.
 
@@ -23,7 +23,7 @@ This service deploys a production-ready Google Kubernetes Engine (GKE) cluster w
 ### Directory Structure
 
 ```
-svc-gke/
+gke/
 ├── main.tf                    # Main GKE cluster configuration
 ├── variables.tf               # Input variables
 ├── outputs.tf                 # Output values
@@ -304,7 +304,7 @@ oauth_scopes = [
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fintech-app
+  name: app
   namespace: production
 spec:
   template:
@@ -581,7 +581,7 @@ workload_config = {
 ### Step 1: Deploy Main GKE Cluster
 
 ```bash
-cd svc-gke
+cd gke
 terraform init
 terraform plan
 terraform apply
@@ -590,7 +590,7 @@ terraform apply
 ### Step 2: Deploy Network Policies
 
 ```bash
-cd svc-gke/network-policies
+cd gke/network-policies
 terraform init
 terraform plan
 terraform apply
@@ -604,7 +604,7 @@ gcloud container clusters get-credentials gke-cluster \
   --region=us-central1 \
   --project=gke-project
 
-cd svc-gke/pod-security-standards
+cd gke/pod-security-standards
 terraform init
 terraform plan
 terraform apply
@@ -614,12 +614,12 @@ kubectl get namespaces --show-labels
 ### Step 4: Deploy RBAC Configuration
 
 ```bash
-cd svc-gke/rbac/iam-roles
+cd gke/rbac/iam-roles
 terraform init
 terraform plan
 terraform apply
 
-cd svc-gke/rbac/iam-bindings
+cd gke/rbac/iam-bindings
 terraform init
 terraform plan
 terraform apply
@@ -628,7 +628,7 @@ terraform apply
 ### Step 5: Deploy Performance Management
 
 ```bash
-cd svc-gke/performance-management
+cd gke/performance-management
 terraform init
 terraform plan
 terraform apply
@@ -885,5 +885,5 @@ For issues and questions:
 **Network Security**: Zero-trust with network policies  
 **Access Control**: Comprehensive RBAC implementation  
 **Performance**: Optimized with resource management  
-**Last Updated**: June 2025  
+**Last Updated**: September 2025  
 **Terraform Version**: >= 1.5.0 
