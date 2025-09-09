@@ -49,7 +49,7 @@ Both VPCs are configured as Shared VPC host projects, allowing service projects 
 
 ```hcl
 module "shared_vpc" {
-  source = "./net-svpc"
+  source = "./shared-vpc"
 
   # Project Configuration
   project_id = "host-project"
@@ -117,7 +117,7 @@ module "shared_vpc" {
 
 ```hcl
 module "shared_vpc" {
-  source = "./net-svpc"
+  source = "./shared-vpc"
 
   # Cloud NAT Configuration
   gke_cloud_nat_config = {
@@ -375,9 +375,9 @@ Data VPC (10.161.0.0/16):
 
 This module has no external dependencies but provides outputs consumed by:
 
-- `svc-gke` - GKE cluster deployment
-- `svc-sql` - Cloud SQL instance deployment
-- `svc-redis` - Memorystore Redis deployment
+- `gke` - GKE cluster deployment
+- `sql` - Cloud SQL instance deployment
+- `redis` - Memorystore Redis deployment
 
 ## Troubleshooting
 
