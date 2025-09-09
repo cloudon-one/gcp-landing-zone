@@ -104,7 +104,7 @@ terraform plan
 terraform apply
 
 # 2. Deploy shared VPC
-cd ../svpc
+cd ../shared-vpc
 terraform init
 terraform plan
 terraform apply
