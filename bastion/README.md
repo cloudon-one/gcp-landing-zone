@@ -1,8 +1,8 @@
-# Fintech Prod Bastion Host Manual
+# Bastion Host Manual
 
 ## Overview
 
-The Fintech Bastion Host is a secured jump host deployed in Google Cloud Platform that provides secure access to private resources in your infrastructure. This document provides comprehensive instructions for setting up, accessing, and maintaining the bastion host.
+The Bastion Host is a secured jump host deployed in Google Cloud Platform that provides secure access to private resources in your infrastructure. This document provides comprehensive instructions for setting up, accessing, and maintaining the bastion host.
 
 **Infrastructure Details:**
 
@@ -60,7 +60,7 @@ Create a `terraform.tfvars` file in the `net-bastion` directory:
 net_svpc_backend_bucket = "tfstate-bucket"
 net_svpc_backend_prefix = "net-svpc"
 svc_projects_backend_bucket = "tfstate-bucket"
-svc_projects_backend_prefix = "svc-projects"
+svc_projects_backend_prefix = "projects"
 
 # Bastion configuration
 region = "us-central1"
@@ -87,7 +87,7 @@ router_name = "router"
 ### 2. Initialize Terraform
 
 ```bash
-cd net-bastion
+cd bastion
 terraform init 
 terraform plan
 terraform apply
@@ -155,7 +155,7 @@ Host fintech-bastion
 
 Then connect using:
 ```bash
-ssh fintech-bastion
+ssh bastion
 ```
 
 ### Method 4: Connecting with OS Login
@@ -251,7 +251,7 @@ The bastion host automatically creates firewall rules:
 
 ```bash
 gcloud projects add-iam-policy-binding host-project \
-  --member="user:user@fintech.com" \
+  --member="user:user1@example.com" \
   --role="roles/iap.tunnelResourceAccessor"
 ```
 
